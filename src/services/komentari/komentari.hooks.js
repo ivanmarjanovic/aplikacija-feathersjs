@@ -1,10 +1,12 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
-const restrictToOwner = require('../../hooks/restrict-to-owner');
+
+
+const restrtownKomentari = require('../../hooks/restrtown-komentari');
 
 
 
-const administrator = require('../../hooks/administrator');
+const adminKomentari = require('../../hooks/admin-komentari');
 
 
 
@@ -14,9 +16,9 @@ module.exports = {
     find: [],
     get: [],
     create: [],
-    update: [restrictToOwner(), administrator()],
-    patch: [restrictToOwner(), administrator()],
-    remove: [restrictToOwner(), administrator()]
+    update: [restrtownKomentari(), adminKomentari()],
+    patch: [restrtownKomentari(), adminKomentari()],
+    remove: [restrtownKomentari(), adminKomentari()]
   },
 
   after: {
