@@ -15,5 +15,8 @@ module.exports = function (app) {
   // Get our initialized service so that we can register hooks
   const service = app.service('users');
 
+  service.on('created', user => console.log('user created', user));
+  service.on('removed', user => console.log('user removed', user));
+
   service.hooks(hooks);
 };
