@@ -7,23 +7,10 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
+    userId: {type: String},
     text: { type: String, required: true },
     imageUrl: { type: String },
-    author: {
-      id:{
-        type: Schema.Types.ObjectId,
-        ref: "User"
-      },
-      username: String
-    },
-    comments: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Comment"
-      }
-    ]
-  }, {
-    timestamps: true
+  
   });
 
   // This is necessary to avoid model compilation errors in watch mode

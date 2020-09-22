@@ -1,11 +1,8 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
-const restrictToOwner = require('../../hooks/restrict-to-owner');
+const userAndAdmin = require('../../hooks/user-and-admin');
 
-
-
-const administrator = require('../../hooks/administrator');
-
+const processPost = require('../../hooks/process-post');
 
 
 module.exports = {
@@ -13,10 +10,10 @@ module.exports = {
     all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [],
-    update: [restrictToOwner(), administrator()],
-    patch: [restrictToOwner(), administrator()],
-    remove: [restrictToOwner(), administrator()]
+    create: [processPost()],
+    update: [ userAndAdmin],
+    patch: [userAndAdmin],
+    remove: [userAndAdmin()]
   },
 
   after: {
