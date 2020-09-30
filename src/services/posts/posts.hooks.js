@@ -5,13 +5,16 @@ const userAndAdmin = require('../../hooks/user-and-admin');
 const processPost = require('../../hooks/process-post');
 
 
+const wordCount = require('../../hooks/word-count');
+
+
 module.exports = {
   before: {
     all: [authenticate('jwt')],
     find: [],
     get: [],
     create: [processPost()],
-    update: [ userAndAdmin],
+    update: [userAndAdmin],
     patch: [userAndAdmin],
     remove: [userAndAdmin()]
   },
@@ -20,7 +23,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [wordCount()],
     update: [],
     patch: [],
     remove: []
