@@ -6,7 +6,7 @@
     "default": 10,
     "max": 50
   }, 
-  "mongodb": "mongodb+srv://nikola:bazasifra11@cluster0.kft2k.mongodb.net/yelp_camp?retryWrites=true&w=majority",
+  "mongodb": "mongodb://localhost:27017/aplikacija",
   "authentication": {
     "entity": "user",
     "service": "users",

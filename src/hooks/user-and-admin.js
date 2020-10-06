@@ -1,11 +1,11 @@
 // Use this hook to manipulate incoming or outgoing data.
 // For more information on hooks see: http://docs.feathersjs.com/api/hooks.html
-const { Forbidden } = require('@feathersjs/errors');
+// const { Forbidden } = require('@feathersjs/errors');
 
-// eslint-disable-next-line no-unused-vars
+// // eslint-disable-next-line no-unused-vars
 
 
 
-module.exports = (options = {}) => {
+// module.exports = (options = {}) => {
   
-};
+// };

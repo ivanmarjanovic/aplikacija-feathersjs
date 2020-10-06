@@ -1,18 +1,21 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
 
-const processPost = require('../../hooks/process-post');
+// const processPost = require('../../hooks/process-post');
 
-const wordCount = require('../../hooks/word-count');
+// const wordCount = require('../../hooks/word-count');
 
 const { Forbidden } = require('@feathersjs/errors');
 
+const debugHook = function (hook) {
+  console.log(hook);
+}
 
 module.exports = {
   before: {
     all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [processPost()],
+    create: [wordCountAndUserId],
     update: [userAndAdmin],
     patch: [userAndAdmin],
     remove: [userAndAdmin]
@@ -22,7 +25,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [wordCount()],
+    create: [],
     update: [],
     patch: [],
     remove: []
@@ -38,11 +41,12 @@ module.exports = {
     remove: []
   }
 };
+
 async function userAndAdmin(context) {   
   try {const user = context.params.user;
   const data = context.data;
   console.log('user je ' + JSON.stringify(user));
-  console.log('date je ' + JSON.stringify(data));
+  console.log('data je ' + JSON.stringify(data));
   if(user.roles !== undefined && user.roles.includes('admin')) {
     return context;
   }
@@ -63,3 +67,27 @@ async function userAndAdmin(context) {
     console.log(error.stack);
     throw error;};
 };
+
+
+  function wordCountAndUserId (context) {
+    const { data } = context;
+    const text = data.text;
+    const { user } = context.params;
+
+    if(!data.text) {
+      throw new Error('A message must have a text');
+    }
+
+    function wordCounting(str) { 
+      return str.split(" ").length;
+    };
+
+    const wc = wordCounting(text);
+
+    context.data = {
+      text,
+      word_count: wc,
+      userId: user._id 
+    };
+
+    return context;}

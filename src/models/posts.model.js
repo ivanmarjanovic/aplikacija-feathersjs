@@ -7,7 +7,7 @@ module.exports = function (app) {
   const mongooseClient = app.get('mongooseClient');
   const { Schema } = mongooseClient;
   const schema = new Schema({
-    wordCount: {type: Number},
+    word_count: {type: Number},
     userId: {type: Schema.Types.ObjectId}, /*if type: String => post.params.userId equals user.userId */ 
     text: { type: String, required: true },
     imageUrl: { type: String },
