@@ -15,10 +15,10 @@ module.exports = function (app) {
   // Get our initialized service so that we can register hooks
   const service = app.service('posts');
 
-  service.on('created', post => console.log('post created', post));
-  service.on('updated', (post, context) => console.log('post updated', post));
-  service.on('patched', post => console.log('post patched', post));
-  service.on('removed', (post, context) => console.log('post removed', post));
+  // service.on('created', post => console.log('post created', post));
+  // service.on('updated', (post, context) => console.log('post updated', post));
+  // service.on('patched', post => console.log('post patched', post));
+  // service.on('removed', (post, context) => console.log('post removed', post));
   
 
   service.hooks(hooks);
